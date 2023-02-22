@@ -1,0 +1,22 @@
+[
+  {    
+      "id": "e1",
+      "title": "AI",
+      "event_id": "2",
+      "date": "15-02-2023",
+      "time": "15:00pm - 16:00pm",
+      "location": "Errie Hall",
+      "Presenter": "Ram",
+      "Desc": "AI shit..."
+  },
+  {
+    "id": "e2",
+    "title": "Node",
+    "location": "windsor"
+  },
+  {
+    "id": "e3",
+    "title": "Android",
+    "location": "windsor"
+  }
+]
