@@ -39,6 +39,9 @@ function Navbar() {
           <Link to="/Support"  style={linkStyle}>
             Support
           </Link>
+          <Link to="/QRScanner"  style={linkStyle}>
+            QRScanner
+          </Link>
       </Toolbar>
     </AppBar>
   );
