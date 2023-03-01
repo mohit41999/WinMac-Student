@@ -10,6 +10,7 @@ import Navbar from "./Navbar";
 import { Route, Routes } from "react-router-dom";
 import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
+import QRScanner from "./QRScanner/QRScanner";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Events" element={<Events />} />
         <Route path="/MyAttendance" element={<MyAttendance />} />
         <Route path="/Support" element={<Support />} />
+        <Route path="/QRScanner" element={<QRScanner />} />
       </Routes>
     </>
   );

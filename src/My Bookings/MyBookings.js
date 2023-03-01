@@ -78,37 +78,76 @@ function MyBookings() {
   console.log("deatils length: " + details.length);
 
   return (
+
+     // <Card sx={{ maxWidth: 345, mx: "auto" }}>
+    //   <CardHeader
+    //     action={
+    //       <IconButton aria-label="settings">
+    //         <MoreVertIcon />
+    //       </IconButton>
+    //     }
+    //     title={item.title}
+    //     subheader={"By: " + item.Presenter}
+    //   />
+    //   <CardContent>
+    //     <Typography variant="body2" color="text.secondary">
+    //       Date of Event: {item.date}
+    //       <br />
+    //       Time of Event: {item.time}
+    //       <br />
+    //       Location of Event: {item.location}
+    //       <br />
+    //       Event Description: {item.Desc}
+    //     </Typography>
+    //   </CardContent>
+    //   <CardActions disableSpacing>
+    //    
+    //            <Button
+    //               onClick={() => cancelBooking(item.event_id)}
+    //               type="submit"
+    //               variant="contained"
+    //               sx={{ mt: 3, mb: 2 , marginLeft: 15}}
+    //             >
+    //               Cancel
+    //             </Button>{" "}
+
+    //   </CardActions>
+    // </Card>
+
     <div>
-      <br/>
-      {details.length > 0 &&
-        details.map((item, index) => (
-          <Card sx={{ maxWidth: 700 }} className="event" key={index}>
-            <CardHeader
-              title={item.title}
-              subheader={"By: " + item.Presenter}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                Date of Event: {item.date}
-                <br />
-                Time of Event: {item.time}
-                <br />
-                Location of Event: {item.location}
-              </Typography>
-            </CardContent>{" "}
-              <div>
-                <Button
-                  onClick={() => cancelBooking(item.event_id)}
-                  type="submit"
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Cancel
-                </Button>{" "}
-              </div>
-          </Card>
-        ))}
+      My Bookings
     </div>
+    // <div>
+    //   <br/>
+    //   {details.length > 0 &&
+    //     details.map((item, index) => (
+    //       <Card sx={{ maxWidth: 700 }} className="event" key={index}>
+    //         <CardHeader
+    //           title={item.title}
+    //           subheader={"By: " + item.Presenter}
+    //         />
+    //         <CardContent>
+    //           <Typography variant="body2" color="text.secondary">
+    //             Date of Event: {item.date}
+    //             <br />
+    //             Time of Event: {item.time}
+    //             <br />
+    //             Location of Event: {item.location}
+    //           </Typography>
+    //         </CardContent>{" "}
+    //           <div>
+    //             <Button
+    //               onClick={() => cancelBooking(item.event_id)}
+    //               type="submit"
+    //               variant="contained"
+    //               sx={{ mt: 3, mb: 2 }}
+    //             >
+    //               Cancel
+    //             </Button>{" "}
+    //           </div>
+    //       </Card>
+    //     ))}
+    // </div>
   );
 
 }
