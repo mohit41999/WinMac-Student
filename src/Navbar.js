@@ -132,7 +132,7 @@ const Navbar = () => {
               </ListItem>
             </Link>
             <Link
-              to="/Attendance"
+              to="/MyAttendance"
               style={linkStyle}
               onClick={() => setName("Attendance")}
             >
