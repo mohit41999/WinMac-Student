@@ -4,8 +4,15 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
 
 function MyAttendance() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/QRScanner');
+  }
   const [details, setDetails] = useState([]);
   const [isCanceled, setIsCanceled] = useState(false);
 
@@ -63,7 +70,9 @@ function MyAttendance() {
 
   return (
     <div>
+      
       <br/>
+      
       {details.length > 0 &&
         details.map((item, index) => (
           <Card sx={{ maxWidth: 700 }} className="event" key={index}>
@@ -80,6 +89,17 @@ function MyAttendance() {
                 Location of Event: {item.location}
               </Typography>
             </CardContent>{" "}
+            <div>
+                <Button
+                  onClick={handleClick}
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Scan
+                </Button>
+              </div>
+               
+              
           </Card>
         ))}
     </div>
