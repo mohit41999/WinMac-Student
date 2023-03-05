@@ -14,7 +14,6 @@ function MyAttendance() {
     navigate('/QRScanner');
   }
   const [details, setDetails] = useState([]);
-  const [isCanceled, setIsCanceled] = useState(false);
 
   useEffect(() => {
     // First API call to get event IDs
