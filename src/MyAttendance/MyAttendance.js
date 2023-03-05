@@ -69,8 +69,17 @@ function MyAttendance() {
   console.log("deatils length: " + details.length);
 
   return (
+    
     <div>
-      
+      <div>
+                <Button
+                  onClick={handleClick}
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Scan
+                </Button>
+              </div>
       <br/>
       
       {details.length > 0 &&
@@ -88,18 +97,7 @@ function MyAttendance() {
                 <br />
                 Location of Event: {item.location}
               </Typography>
-            </CardContent>{" "}
-            <div>
-                <Button
-                  onClick={handleClick}
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Scan
-                </Button>
-              </div>
-               
-              
+            </CardContent>{" "} 
           </Card>
         ))}
     </div>
