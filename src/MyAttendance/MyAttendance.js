@@ -4,6 +4,7 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,6 +15,12 @@ function MyAttendance() {
     navigate('/QRScanner');
   }
   const [details, setDetails] = useState([]);
+=======
+
+function MyAttendance() {
+  const [details, setDetails] = useState([]);
+  const [isCanceled, setIsCanceled] = useState(false);
+>>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
 
   useEffect(() => {
     // First API call to get event IDs
@@ -68,6 +75,7 @@ function MyAttendance() {
   console.log("deatils length: " + details.length);
 
   return (
+<<<<<<< HEAD
     
     <div>
       <div>
@@ -81,6 +89,10 @@ function MyAttendance() {
               </div>
       <br/>
       
+=======
+    <div>
+      <br/>
+>>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
       {details.length > 0 &&
         details.map((item, index) => (
           <Card sx={{ maxWidth: 700 }} className="event" key={index}>
@@ -96,7 +108,11 @@ function MyAttendance() {
                 <br />
                 Location of Event: {item.location}
               </Typography>
+<<<<<<< HEAD
             </CardContent>{" "} 
+=======
+            </CardContent>{" "}
+>>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
           </Card>
         ))}
     </div>

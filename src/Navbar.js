@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -161,5 +162,52 @@ const Navbar = () => {
     </div>
   );
 };
+=======
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import CssBaseline from "@mui/material/CssBaseline";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import "./Navbar.css";
+import styled from "styled-components";
+
+import { Link,  } from "react-router-dom";
+import "./App.css";
+
+
+function Navbar() {
+ 
+  
+  const linkStyle = {
+    margin: "1rem",
+    textDecoration: "none",
+  };
+  return (
+    <AppBar position="relative">
+      <CssBaseline />
+      <Toolbar>
+        <Typography variant="h4" >
+          WIN MAC
+        </Typography>
+          <Link to="/DashBoard"  style={linkStyle}>
+            DashBoard
+          </Link>
+          <Link to="/MyBooking"  style={linkStyle}>
+            My Booking
+          </Link>
+          <Link to="/Events"  style={linkStyle}>
+            Events
+          </Link>
+          <Link to="/MyAttendance"  style={linkStyle}>
+            My Attendance
+          </Link>
+          <Link to="/Support"  style={linkStyle}>
+            Support
+          </Link>
+      </Toolbar>
+    </AppBar>
+  );
+}
+>>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
 
 export default Navbar;
