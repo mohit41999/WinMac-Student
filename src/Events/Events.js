@@ -1,6 +1,5 @@
 import Button from "@mui/material/Button";
 import "./Events.css";
-<<<<<<< HEAD
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -11,16 +10,12 @@ import Typography from "@mui/material/Typography";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 
-=======
-import axios from "axios";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import React, { useState, useEffect } from "react";
->>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
 
 const Events = (props) => {
+  const username = localStorage.getItem('username');
+
+  console.log("username",username)
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,11 +28,6 @@ const Events = (props) => {
       console.log(response.data);
     });
   }
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
   function book(id) {
     console.log("id: "+id+" type: "+typeof(id));
     axios
@@ -52,7 +42,6 @@ const Events = (props) => {
   }
 
   console.log("data: ", data.data);
-<<<<<<< HEAD
 
   return (
     <div>
@@ -91,50 +80,9 @@ const Events = (props) => {
             </Button>{" "}
           </CardActions>
         </Card>
-=======
-  
-  return (
-    <div>
-      <br/>
-      {data.length > 0 &&
-        data.data.map((item, index) => (
-          <Card sx={{ maxWidth: 700 }} className="event" key={index}>
-            <CardHeader
-              title={item.title}
-              subheader={"By: " + item.Presenter}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                Date of Event: {item.date}
-                <br />
-                Time of Event: {item.time}
-                <br />
-                Location of Event: {item.location}
-                <br />
-                Event Description: {item.Desc}
-              </Typography>
-            </CardContent>{" "}
-            {
-              <div>
-                <Button
-                  onClick={() => book(item.event_id)}
-                  type="submit"
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Book
-                </Button>{" "}
-              </div>
-            }
-          </Card>
->>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
         ))}
     </div>
   );
 };
 
-<<<<<<< HEAD
 export default Events;
-=======
-export default Events;
->>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41

@@ -10,7 +10,13 @@ import { indigo } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 import { bgcolor } from "@mui/system";
 
+
+
 function DashBoard() {
+  const username = localStorage.getItem('username');
+
+  console.log("username",username)
+
   return (
     <>
       <Box sx={{ display: "flex" }}>

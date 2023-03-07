@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -17,11 +16,18 @@ import Hidden from "@mui/material/Hidden";
 import EventIcon from "@mui/icons-material/Event";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import uwinLogo from "./uwindsor_logo.png";
+import { useLocation } from "react-router-dom";
+
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 
 const Navbar = () => {
+  const location = useLocation();
+
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("DashBoard");
+  const showNavbar = location.pathname != "/";
+  const currentPage = location.pathname.substring(1); // remove the leading forward slash
+
+  const [name, setName] = useState(currentPage);
 
   const toggleDrawer = (isOpen) => (event) => {
     if (
@@ -53,161 +59,106 @@ const Navbar = () => {
   };
   return (
     <div>
-      <AppBar position="static" sx={{ bgcolor: "ButtonText" }}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <div style={img}>
-            <img
-              src={uwinLogo}
-              alt="Logo"
-              style={{ height: "40px", marginRight: "16px" }}
-            />
-          </div>
-          <Hidden smDown>
-            <Typography style={linkStyleHeaderNav} variant="h6">
-              {name}
-            </Typography>
-          </Hidden>
-        </Toolbar>
-      </AppBar>
-      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        <div
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-        >
-          <List>
-            <Link
-              to="/DashBoard"
-              style={linkStyle}
-              onClick={() => setName("DashBoard")}
+      {showNavbar && (
+        <>
+          <AppBar position="static" sx={{ bgcolor: "ButtonText" }}>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <div style={img}>
+                <img
+                  src={uwinLogo}
+                  alt="Logo"
+                  style={{ height: "40px", marginRight: "16px" }}
+                />
+              </div>
+              <Hidden smDown>
+                <Typography style={linkStyleHeaderNav} variant="h6">
+                  {name}
+                </Typography>
+              </Hidden>
+            </Toolbar>
+          </AppBar>
+          <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
+            <div
+              role="presentation"
+              onClick={toggleDrawer(false)}
+              onKeyDown={toggleDrawer(false)}
             >
-              <ListItem button>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="DashBoard" />
-              </ListItem>
-            </Link>
-            <Link
-              to="/mybooking"
-              style={linkStyle}
-              onClick={() => setName("My Booking")}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <BookIcon />
-                </ListItemIcon>
-                <ListItemText primary="My Booking" />
-              </ListItem>
-            </Link>
-            <Link
-              to="/Events"
-              style={linkStyle}
-              onClick={() => setName("Event")}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <EventIcon />
-                </ListItemIcon>
-                <ListItemText primary="Event" />
-              </ListItem>
-            </Link>
-            <Link
-              to="/Support"
-              style={linkStyle}
-              onClick={() => setName("Support")}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <ContactPageIcon />
-                </ListItemIcon>
-                <ListItemText primary="Support" />
-              </ListItem>
-            </Link>
-            <Link
-              to="/MyAttendance"
-              style={linkStyle}
-              onClick={() => setName("Attendance")}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <AccountBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Attendance" />
-              </ListItem>
-            </Link>
-            <Link
-              to="/QRScanner"
-              style={linkStyle}
-              onClick={() => setName("QRScanner")}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <AccountBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="QRScanner" />
-              </ListItem>
-            </Link>
-          </List>
-        </div>
-      </Drawer>
+              <List>
+                <Link
+                  to="/DashBoard"
+                  style={linkStyle}
+                  onClick={() => setName("DashBoard")}
+                >
+                  <ListItem button>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="DashBoard" />
+                  </ListItem>
+                </Link>
+                <Link
+                  to="/mybooking"
+                  style={linkStyle}
+                  onClick={() => setName("My Booking")}
+                >
+                  <ListItem button>
+                    <ListItemIcon>
+                      <BookIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="My Booking" />
+                  </ListItem>
+                </Link>
+                <Link
+                  to="/Events"
+                  style={linkStyle}
+                  onClick={() => setName("Event")}
+                >
+                  <ListItem button>
+                    <ListItemIcon>
+                      <EventIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Event" />
+                  </ListItem>
+                </Link>
+                <Link
+                  to="/Support"
+                  style={linkStyle}
+                  onClick={() => setName("Support")}
+                >
+                  <ListItem button>
+                    <ListItemIcon>
+                      <ContactPageIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Support" />
+                  </ListItem>
+                </Link>
+                <Link
+                  to="/MyAttendance"
+                  style={linkStyle}
+                  onClick={() => setName("Attendance")}
+                >
+                  <ListItem button>
+                    <ListItemIcon>
+                      <AccountBoxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Attendance" />
+                  </ListItem>
+                </Link>
+              </List>
+            </div>
+          </Drawer>
+        </>
+      )}
     </div>
   );
 };
-=======
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import "./Navbar.css";
-import styled from "styled-components";
-
-import { Link,  } from "react-router-dom";
-import "./App.css";
-
-
-function Navbar() {
- 
-  
-  const linkStyle = {
-    margin: "1rem",
-    textDecoration: "none",
-  };
-  return (
-    <AppBar position="relative">
-      <CssBaseline />
-      <Toolbar>
-        <Typography variant="h4" >
-          WIN MAC
-        </Typography>
-          <Link to="/DashBoard"  style={linkStyle}>
-            DashBoard
-          </Link>
-          <Link to="/MyBooking"  style={linkStyle}>
-            My Booking
-          </Link>
-          <Link to="/Events"  style={linkStyle}>
-            Events
-          </Link>
-          <Link to="/MyAttendance"  style={linkStyle}>
-            My Attendance
-          </Link>
-          <Link to="/Support"  style={linkStyle}>
-            Support
-          </Link>
-      </Toolbar>
-    </AppBar>
-  );
-}
->>>>>>> 183c0f784ad99e4b531183155e30e02f820f3f41
 
 export default Navbar;
