@@ -10,6 +10,10 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 
 export default function Complaints() {
+  const username = localStorage.getItem('username');
+
+  console.log("username",username)
+
   const [details, setDetails] = useState([]);
 
   useEffect(() => {

@@ -9,6 +9,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 function MyAttendance() {
+  const username = localStorage.getItem('username');
+
+  console.log("username",username)
+
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/QRScanner');
@@ -68,7 +72,6 @@ function MyAttendance() {
   console.log("deatils length: " + details.length);
 
   return (
-    
     <div>
       <div>
                 <Button
@@ -80,7 +83,6 @@ function MyAttendance() {
                 </Button>
               </div>
       <br/>
-      
       {details.length > 0 &&
         details.map((item, index) => (
           <Card sx={{ maxWidth: 700 }} className="event" key={index}>
@@ -96,7 +98,7 @@ function MyAttendance() {
                 <br />
                 Location of Event: {item.location}
               </Typography>
-            </CardContent>{" "} 
+            </CardContent>{" "}
           </Card>
         ))}
     </div>

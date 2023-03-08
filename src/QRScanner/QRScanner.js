@@ -7,6 +7,12 @@ import axios from "axios";
 
 
 function QRScanner() { 
+
+  const username = localStorage.getItem('username');
+
+  console.log("username",username)
+
+
   const navigate = useNavigate();
     const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
@@ -29,7 +35,11 @@ function QRScanner() {
      function Attend(id) {
       console.log("id: "+id+" type: "+typeof(id));
       axios
+
+        .post("http://localhost:5000/winmac/eventAttend/attended", {"username": "chauha45", "eventAttended": id})
+
         .post("http://localhost:5000/winmac/eventAttend/attended", {"username": "Mpatel", "eventAttended": id})
+
         .then((response) => {
           console.log("Event Attended",response.data);
           navigate('/MyAttendance');

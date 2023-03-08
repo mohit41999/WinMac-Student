@@ -19,6 +19,8 @@ function App() {
     {/* <Login /> */}
       <Navbar />
       <Routes>
+      <Route exact path="/" element={<Login />} />
+
         <Route path="/DashBoard" element={<DashBoard />} />
         <Route path="/MyBooking" element={<MyBookings />} />
         <Route path="/Events" element={<Events />} />
