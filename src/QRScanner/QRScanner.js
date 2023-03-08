@@ -1,47 +1,49 @@
 import React, {useState, useRef} from 'react';
 // import {Container, Card, CardContent,  TextField, Button} from '@mui/material';
-import QRCode from 'qrcode';
 import './QRScanner.css';
-import { Button, Card, CardContent, Container, TextField } from '@mui/material';
 import QrReader from 'react-qr-reader';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 
 function QRScanner() { 
+  const username = localStorage.getItem('username');
+
+  console.log("username",username)
+
+  const navigate = useNavigate();
     const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [scanResultFile, setScanResultFile] = useState('');
     const [scanResultWebCam, setScanResultWebCam] =  useState('');
     // const classes = useStyles();
-    const qrRef = useRef(null);
   
   
-    const generateQrCode = async () => {
-      try {
-            const response = await QRCode.toDataURL(text);
-            setImageUrl(response);
-      }catch (error) {
-        console.log(error);
-      }
-    }
-    const handleErrorFile = (error) => {
-      console.log(error);
-    }
-    const handleScanFile = (result) => {
-        if (result) {
-            setScanResultFile(result);
-        }
-    }
-    const onScanFile = () => {
-      qrRef.current.openImageDialog();
-    }
     const handleErrorWebCam = (error) => {
       console.log(error);
     }
     const handleScanWebCam = (result) => {
       if (result){
           setScanResultWebCam(result);
+          console.log(result);
+          Attend(result);
       }
      }
+
+     function Attend(id) {
+      console.log("id: "+id+" type: "+typeof(id));
+      axios
+        .post("http://localhost:5000/winmac/eventAttend/attended", {"username": "chauha45", "eventAttended": id})
+        .then((response) => {
+          console.log("Event Attended",response.data);
+          navigate('/MyAttendance');
+        })
+        .catch((error) => {
+          console.error("Error updating attendance:", error);
+        });
+    }
+
+
   return (
     <div className="conatiner">
           <div>
