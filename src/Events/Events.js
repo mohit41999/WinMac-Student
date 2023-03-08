@@ -11,16 +11,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
 
 
-
 const Events = (props) => {
   const username = localStorage.getItem('username');
 
   console.log("username",username)
-
-
-
-
-const Events = (props) => {
 
   const [data, setData] = useState([]);
 
@@ -51,7 +45,7 @@ const Events = (props) => {
 
   return (
     <div>
-      <br/> `
+      <br/> 
       {data.length > 0 &&
         data.data.map((item, index) => (
           <Card sx={{ maxWidth: 345, mx: "auto" }}>
