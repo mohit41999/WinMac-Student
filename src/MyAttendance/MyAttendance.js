@@ -24,7 +24,7 @@ function MyAttendance() {
     fetch("http://localhost:5000/winmac/eventAttend/myAttendance", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: "chauha46" }),
+      body: JSON.stringify({ username: "Mpatel" }),
     })
       .then((response) => response.json())
       .then((data) => {
