@@ -18,7 +18,7 @@ export default function Complaints() {
 
   useEffect(() => {
     getComplsints();
-  }, []);
+  },);
 
   const complaintRef = useRef(null);
   const [complaint, setComplaint] = useState("");
@@ -27,7 +27,7 @@ export default function Complaints() {
     fetch("http://localhost:5000/winmac/support/myTickets", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: "chauha45" }),
+      body: JSON.stringify({ username: username }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -35,7 +35,7 @@ export default function Complaints() {
         setDetails(data.data);
       })
       .catch((error) => {
-        console.error(`Error fetching data for event ${"chauha45"}:`, error);
+        console.error(`Error fetching data for event ${username}:`, error);
         return null;
       });
   }
@@ -48,7 +48,7 @@ export default function Complaints() {
     setComplaint("");
     axios
       .post("http://localhost:5000/winmac/support/newTicket", {
-        username: "chauha45",
+        username: username,
         message: complaintMessage,
       })
       .then((response) => {

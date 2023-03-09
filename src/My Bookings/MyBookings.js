@@ -15,15 +15,15 @@ function MyBookings() {
   const [details, setDetails] = useState([]);
 
   useEffect(() => {
-    bookings();
-  }, []);
+    bookings(username);
+  },);
 
-  function bookings(){
+  function bookings(username){
     // First API call to get event IDs
     fetch("http://localhost:5000/winmac/eventBook/myBookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: "chauha45" }),
+      body: JSON.stringify({ username: username }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -71,7 +71,7 @@ function MyBookings() {
   function cancelBooking(id) {
     console.log("id: "+id+" type: "+typeof(id));
     axios
-      .post("http://localhost:5000/winmac/eventBook/removeEvent", {"username": "chauha45", "eventBooked": id})
+      .post("http://localhost:5000/winmac/eventBook/removeEvent", {"username": username, "eventBooked": id})
       .then((response) => {
         console.log("cancel success",response.data);
         bookings();

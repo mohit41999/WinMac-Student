@@ -9,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
-//comment
 
 const Events = (props) => {
   const username = localStorage.getItem('username');
@@ -28,10 +27,10 @@ const Events = (props) => {
       console.log(response.data);
     });
   }
-  function book(id) {
+  function book(id,username) {
     console.log("id: "+id+" type: "+typeof(id));
     axios
-      .post("http://localhost:5000/winmac/eventBook/book", {"username": "chauha45", "eventBooked": id})
+      .post("http://localhost:5000/winmac/eventBook/book", {"username": username, "eventBooked": id})
       .then((response) => {
         console.log("cancel success",response.data);
         list();
@@ -71,7 +70,7 @@ const Events = (props) => {
           </CardContent>
           <CardActions disableSpacing>
             <Button
-              onClick={() => book(item.event_id)}
+              onClick={() => book(item.event_id, username)}
               type="submit"
               variant="contained"
               sx={{ mt: 3, mb: 2, marginLeft: 15 }}
