@@ -2,48 +2,55 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import { indigo } from "@mui/material/colors";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { useState } from "react";
 
 export default function Login() {
-  const [currentForm, setCurrentForm] = useState("signup");
-
-  
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
-
-  // const username = useContext(UserContext);
- 
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
-  const handleUsernameChange = (event) => {
-    //console.log(event);
-    console.log(event.target.value);
-    localStorage.setItem('username',event.target.value);
 
+  const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username.trim() === "") {
+      setUsernameError(true);
+    } else {
+      setUsernameError(false);
+    }
+    if (password.trim() === "") {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+    loginUser(username, password);
   };
-
-
-  const handleLogin = () => {
- 
-      navigate('/DashBoard');
-    } ;
+  
+  function loginUser(username, password){
+    axios
+    .post("http://localhost:5000/winmac/auth/login", {"username": username, "password": password})
+    .then((response) => {
+      if(response.data.message==='login successful'){
+        console.log("login success",response.data);
+        localStorage.setItem('username',username);
+        navigate('/DashBoard');
+      }
+      else{
+        console.log("Error logging-in",response.data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error loggin in:", error);
+    });
+  }
 
   return (
     <Box
@@ -60,46 +67,44 @@ export default function Login() {
       <Typography component="h1" variant="h5">
         Login
       </Typography>
-      <Box>
-        <TextField
-          className="textfield"
-          color="primary"
-          onChange={handleUsernameChange}
-          // value={username}
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          label="Uwin Email Address"
-          name="email"
-          autoFocus
-        />
-        {/* <TextField
-          margin="normal"
-          required
-          fullWidth
-          value={password}
-          onChange={handlePasswordChange}
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-        /> */}
+      <Box
+        sx={{
+          marginTop: 6,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            fullWidth
+            margin="normal"
+            error={usernameError}
+            helperText={usernameError ? "Username is required" : ""}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            margin="normal"
+            error={passwordError}
+            helperText={passwordError ? "Password is required" : ""}
+          />
 
-        <FormControlLabel
-          sx={{ alignItems: "left" }}
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
-        <Button
-          onClick={handleLogin}
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          Login
-        </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Login
+          </Button>
+        </form>
       </Box>
     </Box>
   );

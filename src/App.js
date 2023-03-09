@@ -8,7 +8,6 @@ import Support from "./Support/Support";
 import Events from "./Events/Events";
 import Navbar from "./Navbar";
 import { Route, Routes } from "react-router-dom";
-import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import QRScanner from "./QRScanner/QRScanner";
 

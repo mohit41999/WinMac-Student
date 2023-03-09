@@ -24,7 +24,7 @@ function MyAttendance() {
     fetch("http://localhost:5000/winmac/eventAttend/myAttendance", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: "chauha46" }),
+      body: JSON.stringify({ username: username }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -67,12 +67,21 @@ function MyAttendance() {
       .catch((error) => {
         console.error("Error fetching event IDs:", error);
       });
-  }, []);
+  },);
 
   console.log("deatils length: " + details.length);
 
   return (
     <div>
+      <div>
+                <Button
+                  onClick={handleClick}
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Scan
+                </Button>
+              </div>
       <br/>
       {details.length > 0 &&
         details.map((item, index) => (
