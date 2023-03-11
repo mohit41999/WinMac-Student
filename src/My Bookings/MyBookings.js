@@ -20,7 +20,7 @@ function MyBookings() {
 
   function bookings(username){
     // First API call to get event IDs
-    fetch("http://localhost:5000/winmac/eventBook/myBookings", {
+    fetch("https://acservices-winmac.onrender.com/winmac/eventBook/myBookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username }),
@@ -35,7 +35,7 @@ function MyBookings() {
         data.data.forEach((eventId) => {
           console.log("eventID: " + eventId);
           const promise = fetch(
-            "http://localhost:5000/winmac/eventList/eventDetails",
+            "https://acservices-winmac.onrender.com/winmac/eventList/eventDetails",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ function MyBookings() {
   function cancelBooking(id) {
     console.log("id: "+id+" type: "+typeof(id));
     axios
-      .post("http://localhost:5000/winmac/eventBook/removeEvent", {"username": username, "eventBooked": id})
+      .post("https://acservices-winmac.onrender.com/winmac/eventBook/removeEvent", {"username": username, "eventBooked": id})
       .then((response) => {
         console.log("cancel success",response.data);
         bookings();
