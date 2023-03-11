@@ -24,7 +24,7 @@ export default function Complaints() {
   const [complaint, setComplaint] = useState("");
 
   function getComplsints() {
-    fetch("http://localhost:5000/winmac/support/myTickets", {
+    fetch("https://acservices-winmac.onrender.com/winmac/support/myTickets", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username }),
@@ -47,7 +47,7 @@ export default function Complaints() {
     console.log(complaintMessage);
     setComplaint("");
     axios
-      .post("http://localhost:5000/winmac/support/newTicket", {
+      .post("https://acservices-winmac.onrender.com/winmac/support/newTicket", {
         username: username,
         message: complaintMessage,
       })
@@ -63,7 +63,7 @@ export default function Complaints() {
   function deleteComplaint(id) {
     console.log("id: " + id);
     axios
-      .post("http://localhost:5000/winmac/support/deleteTicket", {
+      .post("https://acservices-winmac.onrender.com/winmac/support/deleteTicket", {
         event_id: id,
       })
       .then((response) => {

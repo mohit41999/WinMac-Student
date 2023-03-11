@@ -21,7 +21,7 @@ function MyAttendance() {
 
   useEffect(() => {
     // First API call to get event IDs
-    fetch("http://localhost:5000/winmac/eventAttend/myAttendance", {
+    fetch("https://acservices-winmac.onrender.com/winmac/eventAttend/myAttendance", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username }),
@@ -36,7 +36,7 @@ function MyAttendance() {
         data.data.forEach((eventId) => {
           console.log("eventID: " + eventId);
           const promise = fetch(
-            "http://localhost:5000/winmac/eventList/eventDetails",
+            "https://acservices-winmac.onrender.com/winmac/eventList/eventDetails",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

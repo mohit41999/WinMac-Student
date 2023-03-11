@@ -33,7 +33,7 @@ function QRScanner() {
      function Attend(id) {
       console.log("id: "+id+" type: "+typeof(id));
       axios
-        .post("http://localhost:5000/winmac/eventAttend/attended", {"username": "chauha45", "eventAttended": id})
+        .post("https://acservices-winmac.onrender.com/winmac/eventAttend/attended", {"username": username, "eventAttended": id})
         .then((response) => {
           console.log("Event Attended",response.data);
           navigate('/MyAttendance');

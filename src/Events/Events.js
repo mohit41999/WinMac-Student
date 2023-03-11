@@ -22,7 +22,7 @@ const Events = (props) => {
   }, []);
 
   function list(){
-    axios.get("http://localhost:5000/winmac/eventList").then((response) => {
+    axios.get("https://acservices-winmac.onrender.com/winmac/eventList").then((response) => {
       setData(response.data);
       console.log(response.data);
     });
@@ -30,7 +30,7 @@ const Events = (props) => {
   function book(id,username) {
     console.log("id: "+id+" type: "+typeof(id));
     axios
-      .post("http://localhost:5000/winmac/eventBook/book", {"username": username, "eventBooked": id})
+      .post("https://acservices-winmac.onrender.com/winmac/eventBook/book", {"username": username, "eventBooked": id})
       .then((response) => {
         console.log("cancel success",response.data);
         list();
