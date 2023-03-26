@@ -67,7 +67,7 @@ function MyAttendance() {
       .catch((error) => {
         console.error("Error fetching event IDs:", error);
       });
-  },);
+  },[]);
 
   console.log("deatils length: " + details.length);
 

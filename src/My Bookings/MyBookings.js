@@ -16,7 +16,7 @@ function MyBookings() {
 
   useEffect(() => {
     bookings(username);
-  },);
+  },[]);
 
   function bookings(username){
     // First API call to get event IDs

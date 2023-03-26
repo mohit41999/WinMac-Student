@@ -9,12 +9,12 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
-
+import CircularProgress from '@mui/material/CircularProgress';
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -35,25 +35,37 @@ export default function Login() {
   };
   
   function loginUser(username, password){
+    setLoading(true);
     axios
     .post("https://acservices-winmac.onrender.com/winmac/auth/login", {"username": username, "password": password})
     .then((response) => {
       if(response.data.message==='login successful'){
         console.log("login success",response.data);
         localStorage.setItem('username',username);
+        setLoading(false);
         navigate('/DashBoard');
       }
       else{
+        setLoading(false);
         console.log("Error logging-in",response.data);
       }
     })
     .catch((error) => {
+      setLoading(false);
       console.error("Error loggin in:", error);
     });
   }
 
   return (
-    <Box
+    (loading)?<Box
+      sx={{
+        marginTop: 6,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <CircularProgress/></Box>:<Box
       sx={{
         marginTop: 6,
         display: "flex",
@@ -104,6 +116,7 @@ export default function Login() {
           >
             Login
           </Button>
+          
         </form>
       </Box>
     </Box>

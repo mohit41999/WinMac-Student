@@ -9,8 +9,12 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import axios from "axios";
+import Box from "@mui/material/Box";
+
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Events = (props) => {
+  const [loading, setLoading] = useState(false);
   const username = localStorage.getItem('username');
 
   console.log("username",username)
@@ -22,20 +26,29 @@ const Events = (props) => {
   }, []);
 
   function list(){
+    setLoading(true);
     axios.get("https://acservices-winmac.onrender.com/winmac/eventList").then((response) => {
-      setData(response.data);
+      setLoading(false);  
+    setData(response.data);
       console.log(response.data);
+      
+    }).catch((error)=>{
+      setLoading(false);
+      console.error("Retry after some time", error);
     });
   }
   function book(id,username) {
     console.log("id: "+id+" type: "+typeof(id));
+    setLoading(true);
     axios
       .post("https://acservices-winmac.onrender.com/winmac/eventBook/book", {"username": username, "eventBooked": id})
       .then((response) => {
+        setLoading(false);
         console.log("cancel success",response.data);
         list();
       })
       .catch((error) => {
+        setLoading(false);
         console.error("Error canceling booking:", error);
       });
   }
@@ -43,8 +56,18 @@ const Events = (props) => {
   console.log("data: ", data.data);
 
   return (
-    <div>
+   
+    (loading)?<Box
+    sx={{
+      marginTop: 6,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    }}
+  >
+    <CircularProgress/></Box>:<div>
       <br/> 
+      
       {data.length > 0 &&
         data.data.map((item, index) => (
           <Card sx={{ maxWidth: 345, mx: "auto" }}>

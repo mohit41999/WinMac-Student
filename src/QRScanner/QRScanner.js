@@ -7,6 +7,7 @@ import axios from "axios";
 
 
 function QRScanner() { 
+  const [loading, setLoading] = useState(false);
   const username = localStorage.getItem('username');
 
   console.log("username",username)
