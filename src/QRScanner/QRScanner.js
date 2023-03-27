@@ -1,18 +1,24 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 // import {Container, Card, CardContent,  TextField, Button} from '@mui/material';
 import './QRScanner.css';
 import QrReader from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { handleAlertDialog } from "../constants";
+
 
 
 function QRScanner() { 
-  const [loading, setLoading] = useState(false);
   const username = localStorage.getItem('username');
 
   console.log("username",username)
 
   const navigate = useNavigate();
+  useEffect(() => {
+    if(username === null){
+      navigate('/login')
+    }
+  }, []);
     const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [scanResultFile, setScanResultFile] = useState('');
@@ -28,8 +34,14 @@ function QRScanner() {
           setScanResultWebCam(result);
           console.log(result);
           Attend(result);
+          sleep(1000);
       }
      }
+
+     
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
      function Attend(id) {
       console.log("id: "+id+" type: "+typeof(id));
